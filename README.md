@@ -14,3 +14,9 @@ senha:SenhaForte123!
 
 apos entrar no sgdb ou no terminal do docker crie a database com auxilio do arquivo
 Atividade_banco_de_dados_1_create.sql
+
+Maven
+./mvnw -v
+
+compilar
+./mvnw clean compile exec:java
