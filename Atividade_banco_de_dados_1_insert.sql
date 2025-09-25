@@ -75,3 +75,16 @@ select c.id_consulta,rm.* from Receita_Medica as rm
 join Registro_Consulta as rc on rc.id_registro = rm.FK_id_registro
 join Consulta as c on c.id_consulta = rc.FK_id_consulta
 where c.id_consulta = rc.FK_id_consulta;
+
+--Questao 25
+select p.id_paciente,rm.* from Receita_Medica as rm
+join Registro_Consulta as rc on
+rm.FK_id_registro = rc.id_registro
+join Consulta as c on c.id_consulta = rc.FK_id_consulta
+join Paciente as p on p.id_paciente = c.FK_id_paciente
+where p.id_paciente = 1;
+
+--Questao 26
+select * from Consulta as c
+join Paciente as p on c.FK_id_paciente = p.id_paciente
+where c.status = 'agendada' and p.id_paciente = 1;
