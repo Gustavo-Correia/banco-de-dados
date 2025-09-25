@@ -54,3 +54,9 @@ INSERT INTO Convenio (FK_id_paciente, operadora, numero_carteirinha, autorizacao
 VALUES
 (1, 'Unimed', '123456789', 'AUT001'),
 (2, 'Amil', '987654321', 'AUT002');
+
+--Questão 21
+Select dbo.Paciente.nome, dbo.Consulta.data from dbo.Paciente
+join dbo.Consulta on 
+dbo.Paciente.id_paciente = dbo.Consulta.FK_id_paciente
+where dbo.Consulta.data between '2025-09-25' and '2025-09-26';
