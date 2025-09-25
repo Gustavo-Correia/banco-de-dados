@@ -88,3 +88,21 @@ where p.id_paciente = 1;
 select * from Consulta as c
 join Paciente as p on c.FK_id_paciente = p.id_paciente
 where c.status = 'agendada' and p.id_paciente = 1;
+
+--Questao 27
+select * from Sala as s
+join Consulta as c on s.id_sala = c.FK_id_sala
+where c.data = '2025-09-26';
+
+--Questao 28
+select * from sala as s
+where s.id_sala = 1;
+
+--Questao 29
+select p.valor, p.forma_pagamento from Pagamento as p
+where data between '2025-09-25' and '2025-10-30';
+
+--Questao 30
+Select p.nome, c.id_convenio, ct.id_consulta, ct.data, ct.horario from Paciente p
+join Convenio as c on c.FK_id_paciente = p.id_paciente
+join Consulta as ct on ct.FK_id_paciente = c.FK_id_paciente;
