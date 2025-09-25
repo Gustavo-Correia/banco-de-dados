@@ -19,8 +19,12 @@ VALUES
 INSERT INTO Consulta (data, horario, status, FK_id_paciente, FK_crm_medico, FK_id_sala)
 VALUES
 ('2025-09-25', '09:00', 'agendada', 1, 'CRM001', 1),
+('2025-09-23', '03:00', 'agendada', 1, 'CRM001', 1),
 ('2025-09-26', '14:30', 'realizada', 2, 'CRM002', 2);
 
+UPDATE Consulta
+SET status = 'realizada'
+WHERE id = 1;
 
 INSERT INTO Registro_Consulta (FK_id_consulta, sintomas, diagnostico)
 VALUES
