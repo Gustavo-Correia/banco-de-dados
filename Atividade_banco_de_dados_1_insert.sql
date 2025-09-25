@@ -65,3 +65,13 @@ where dbo.Consulta.data between '2025-09-25' and '2025-09-26';
 select * from dbo.Consulta as c
 join dbo.Medicos as m on c.FK_crm_medico = m.crm
 where c.data = '2025-09-25';
+
+--Questão 23
+select e.tipo, m.especialidade from Exames as e
+join Medicos as m on e.FK_crm_medico = m.crm;
+
+--Questao 24
+select c.id_consulta,rm.* from Receita_Medica as rm
+join Registro_Consulta as rc on rc.id_registro = rm.FK_id_registro
+join Consulta as c on c.id_consulta = rc.FK_id_consulta
+where c.id_consulta = rc.FK_id_consulta;
