@@ -60,3 +60,8 @@ Select dbo.Paciente.nome, dbo.Consulta.data from dbo.Paciente
 join dbo.Consulta on 
 dbo.Paciente.id_paciente = dbo.Consulta.FK_id_paciente
 where dbo.Consulta.data between '2025-09-25' and '2025-09-26';
+
+--Questao 22
+select * from dbo.Consulta as c
+join dbo.Medicos as m on c.FK_crm_medico = m.crm
+where c.data = '2025-09-25';
