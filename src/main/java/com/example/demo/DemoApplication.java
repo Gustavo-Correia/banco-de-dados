@@ -20,7 +20,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-//java --module-path "C:\javafx-sdk-21.0.8\lib" --add-modules javafx.controls -cp target\classes com.example.demo.DemoApplication
+//   ./mvnw clean compile exec:java          (Executar programa)
 
 @SpringBootApplication
 public class DemoApplication extends Application {
