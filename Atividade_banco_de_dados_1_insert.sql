@@ -106,3 +106,55 @@ where data between '2025-09-25' and '2025-10-30';
 Select p.nome, c.id_convenio, ct.id_consulta, ct.data, ct.horario from Paciente p
 join Convenio as c on c.FK_id_paciente = p.id_paciente
 join Consulta as ct on ct.FK_id_paciente = c.FK_id_paciente;
+
+-- Questao 31
+SELECT COUNT(*) AS total_consultas_realizadas FROM dbo.Consulta
+WHERE status = 'realizada' AND data BETWEEN '2025-09-01' AND '2025-09-30';
+
+-- Questao 32
+SELECT tipo, COUNT(*) AS quantidade_exames from Exames
+Group By tipo;
+
+-- Questao 33
+SELECT SUM(valor) AS total_arrecadado_consultas FROM Pagamento
+Where FK_id_consulta IS NOT NULL and data BETWEEN '2025-09-01' and '2025-09-30' and situacao = 'pago';
+
+-- Questao 34
+SELECT SUM(valor) AS total_arrecadado_exames FROM Pagamento
+Where FK_id_exame IS NOT NULL and data between '2025-09-01' and '2025-09-30' and situacao = 'pago';
+
+-- Questao 35
+SELECT m.crm, m.nome, COUNT(c.id_consulta) AS total_consultas FROM Consulta c
+JOIN Medicos m ON c.FK_crm_medico = m.crm
+WHERE c.data BETWEEN '2025-09-01' AND '2025-09-30' and c.status = 'realizada'
+Group By m.crm, m.nome 
+Having COUNT(c.id_consulta) > 10;
+
+-- Questao 36
+SELECT p.id_paciente, p.nome, COUNT(e.id_exame) AS total_exames FROM Exames e
+JOIN Paciente p ON e.FK_id_paciente = p.id_paciente
+Where e.data_realizacao BETWEEN '2025-09-01' AND '2025-09-30'
+GROUP BY p.id_paciente, p.nome
+HAVING COUNT(e.id_exame) > 1;
+
+-- Questao 37
+Select p.id_paciente, p.nome FROM Paciente p
+LEFT JOIN Consulta c ON p.id_paciente = c.FK_id_paciente
+WHERE c.id_consulta IS NULL;
+
+-- Questao 38
+SELECT m.crm, m.nome FROM Medicos m 
+LEFT JOIN Consulta c ON m.crm = c.FK_crm_medico
+LEFT JOIN Registro_Consulta rc ON c.id_consulta = rc.FK_id_consulta
+LEFT JOIN Receita_Medica r ON rc.id_registro = r.FK_id_registro
+Where r.id_receita IS NULL
+Group by m.crm, m.nome;
+
+-- Questao 39
+SELECT DISTINCT p.id_paciente, p.nome FROM Exames e JOIN Paciente p ON e.FK_id_paciente = p.id_paciente
+Where e.resultado IS NULL OR LTRIM(RTRIM(e.resultado)) = '';
+
+-- Questao 40
+SELECT DISTINCT p.id_paciente, p.nome, c.data, c.horario FROM Consulta c
+JOIN Paciente p ON p.id_paciente = c.FK_id_paciente
+Where c.status = 'agendada' and c.data < '2025-09-25';
